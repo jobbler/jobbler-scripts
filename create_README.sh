@@ -3,6 +3,6 @@
 
 
 
-sed -i '/^== List of Scripts/q' ./README.md
+sed -i '/^== List of Scripts/q' ./README.asciidoc
 
-find ./*/ -name README.md -exec cat {} \; >> ./README.md
+find ./*/ -name README.asciidoc -exec cat {} \; >> ./README.asciidoc
