@@ -1,0 +1,18 @@
+#! /bin/bash
+
+
+sit () {
+
+    # Description: This function simply counts down the number of seconds 
+    #   passed to it as its first and only argument.
+    #   It prints the countdown on a single line.
+
+    for (( t=$1; t > 0; t-- ))
+    do
+        printf "Waiting: %5ss        \r" ${t}
+        sleep 1
+    done
+
+    printf "waiting:  Finished\n"
+}
+

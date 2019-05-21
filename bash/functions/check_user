@@ -1,0 +1,38 @@
+#! /bin/bash
+
+function check_user() {
+
+    # Description: This function checks if the username passed to it
+    #   is the user executing the script.
+    # 
+    # Return codes: 0 - success, 1 - incorrect user, 2 - usage issue of no username passed
+    #
+    # Example use that exits if the user passed to the function as an argument,
+    # is not executing the script.
+    #   check_user stack || exit 1
+
+    runuser=$1
+
+    local RC
+
+    [[ ! ${runuser} ]] \
+    && {
+        printf "ERROR: Usage: %s USERNAME\n" ${FUNCNAME}
+        RC=2
+        } \
+    || {
+        printf "Checking if the correct user is running the script: "
+
+        [[ ${USER} != ${runuser} ]] && {
+            printf "FAILURE :: User is %s, should be %s\n" ${USER} ${runuser}
+            RC=1
+            } \
+        || {
+            printf "PASS\n"
+            RC=0
+            }
+        }
+
+    return ${RC}
+}
+

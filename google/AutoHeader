@@ -1,0 +1,37 @@
+// This code was assembled from things I found around the net. A simple search will
+// provide the examples I used to create this.
+
+// This function changes the document title and document id based up the document file name.
+
+// Change getHeader to getFooter to modify entries in the footer instead or as well.
+
+// The function name must remain as onOpen() as this is a trigger name in google.
+
+//   Document Name Format: DOCID Document Title
+//   Header Information:
+//     The Document title should be enclosed between the '- ' and ' -' delimeters.
+//     The Document ID must begin with DOC- and end at the end of line.
+
+//     Both substitutions can be customized by modifying *pattern and replaceText.
+
+
+function onOpen() { 
+    var docname = DocumentApp.getActiveDocument().getName();
+    var header  = DocumentApp.getActiveDocument().getHeader();
+  
+    var docArray = docname.split(" ");
+  
+    // Not used, but can be used to change the date in the header or footer
+    var date = Utilities.formatDate(new Date(), "GMT", "MM-dd-yyyy");
+    var datepattern = "\\b\\d{2}-\\d{2}-\\d{4}\\b";
+  
+    // Change the document title
+    var doctitle = docArray.slice(1).join(' ');
+    var titlepattern = "- .* -";
+    header.editAsText().replaceText(titlepattern, '- ' + doctitle + ' -');
+
+    // Change the Doc ID
+    var docid = docArray[0];
+    var docidpattern = "DOC-.*$";
+    header.editAsText().replaceText(docidpattern, docid);
+}

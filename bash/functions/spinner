@@ -1,0 +1,30 @@
+#! /bin/bash
+
+spini=0
+
+spin() {
+
+    # Description: This increments a spinner upon each call.
+    #   Its useful when running on long lists of things like performing
+    #   actions on large amounts of files in a list. It just
+    #   lets the user know something is still running.
+
+    # Simple example of its usage.
+    #   for i in $( find /usr )
+    #   do
+    #     spin
+    #     echo $i >> /tmp/test.out
+    #   done
+
+    spinner=( '-' '\' '|' '/' )
+
+    printf "%s\r" ${spinner[$spini]}
+
+    ((spini++))
+
+    [ ${spini} -eq ${#spinner[@]} ] && spini=0
+
+}
+
+
+
