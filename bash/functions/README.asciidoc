@@ -8,3 +8,19 @@ sit:: This function simply counts down the number of seconds passed to it.
 spinner:: This function displays a working spinner on a line by itself.
 
 
+ToDo:
+rhel_subscriptions:: This function registers the system if need be, enables repos and installs packages
+user_mods:: This function creates a user if it does not exist, sets password, modifiers sudoers, groups, and creates an ssh key if desired
+firewalld_config:: This function enables, starts/stops/reloads, configures ports and services
+libvirt_control:: This function enables, starts/stops libvirt
+libvirt_pool:: This function creates a libvirt storage pool
+nm_bridge:: This function configures a bridge
+nm_connection:: This function modifies a connections settings and start/stops them.
+ocp_pullsecret:: This function gets and merges pull secrets if desired
+ocp_bm_ga:: This function gets the GA baremetal installer bits and extracts it
+ocp_bm_dev:: This function gets the DEV baremetal installer bits and extracts it
+ocp_rhcos_cache:: This function caches the rhcos bits locally or on a web server
+ocp_bm_install_config:: This function creates the baremetal installer install-config.yaml file
+ocp_bm_deploy:: This function cleans the old bootstrap vms, creates a deploy directoy and deploys
+ipmi_node:: This function intrfaces to the ipmitool
+

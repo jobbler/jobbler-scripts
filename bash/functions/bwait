@@ -1,0 +1,56 @@
+#! /bin/bash
+
+
+bwait() {
+
+    # Description: This function simply counts down the number of seconds 
+    #   passed to it as its first argument.
+    #   It prints the countdown on a single line in a bar format.
+    #   After it reaches a number of seconds (steps), it condenses 
+    #   them to a time marks (condense_step)..
+    #   The count to condense can be specified as a second argument.
+    #   The character to use to represent a single second can be specified
+    #      as the third argument.
+    #   The character to use to represent a condensed time mark can be 
+    #      specified as the fourth argument.
+
+    local wtime=$1
+    local condense_step=${2-10}
+    local ones_char=${3-"."}
+    local condense_char=${4-"#"}
+    local t
+    local i
+    local j
+
+    for (( t=$1; t> 0; t-- ))
+    do
+        : ${i:=0}
+        printf "%s" ${ones_char}
+        (( i+=1 ))
+        [[ ${i} -eq ${condense_step} ]] \
+            && {
+                i=0
+                for (( j=${condense_step}; j> 0; j-- ))
+                do
+                    printf "\b"
+                done
+
+                printf "%s" ${condense_char}
+
+                for (( j=${condense_step}; j> 0; j-- ))
+                do
+                    printf " "
+                done
+
+                for (( j=${condense_step}; j> 0; j-- ))
+                do
+                    printf "\b"
+                done
+            }
+        sleep 1
+
+    done
+
+    printf "\n"
+}
+
